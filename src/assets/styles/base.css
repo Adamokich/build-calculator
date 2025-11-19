@@ -1,0 +1,9 @@
+:root {
+  --color-accent: #ff5f13;
+  --color-error: #f21919;
+  --color-light: #ffffff;
+  --color-black: #000000;
+  --color-input: #fffefe;
+
+  --font-family: 'Helvetica Neue', sans-serif;
+}
