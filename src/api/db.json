@@ -76,6 +76,116 @@
       "id": "bathroom_toilet"
     }
   ],
+  "operations": [
+    {
+      "name": "Демонтаж, зачистка старой отделки",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "destruction"
+    },
+    {
+      "name": "Откосы оконные",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "slopes"
+    },
+    {
+      "name": "Штукатурка стен",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "plastering"
+    },
+    {
+      "name": "Стяжка пола",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "screed"
+    },
+    {
+      "name": "Шпаклевка стен",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "puttying/walls"
+    },
+    {
+      "name": "Укладка ламината",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "laying"
+    },
+    {
+      "name": "Поклейка обоев",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "wallpapering"
+    },
+    {
+      "name": "Установка плинтуса на пол",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "installing baseboards"
+    },
+    {
+      "name": "Покраска стен",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "painting/walls"
+    },
+    {
+      "name": "Плитка санузлы, пол кухни, коридор",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "tile"
+    },
+    {
+      "name": "Натяжной / гипсокартонный потолок",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "stretch/plasterboard ceiling"
+    },
+    {
+      "name": "Разводка, установка сантехники",
+      "count": "30000",
+      "unit": "грн/м2",
+      "id": "plumbing"
+    },
+    {
+      "name": "Покраска потолка",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "painting/ceiling"
+    },
+    {
+      "name": "Электрика: розетки, выключ., свет",
+      "count": "40000",
+      "unit": "грн/м2",
+      "id": "electrical"
+    },
+    {
+      "name": "Шпаклевка потолка",
+      "count": "20",
+      "unit": "грн/м2",
+      "id": "puttying/ceiling"
+    },
+    {
+      "name": "Вставка межкомнатных дверей",
+      "count": "10000",
+      "unit": "грн/м2",
+      "id": "insert/interior doors"
+    },
+    {
+      "name": "Плинтус потолочный",
+      "count": "10",
+      "unit": "грн/м2",
+      "id": "ceiling plinth"
+    },
+    {
+      "name": "Вставка входной двери ",
+      "count": "10000",
+      "unit": "грн/м2",
+      "id": "insert/front door"
+    }
+  ],
   "notes": {
     "notesSquareRooms": [
       {

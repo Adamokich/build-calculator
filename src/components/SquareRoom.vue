@@ -27,7 +27,7 @@ onMounted(() => calculatorStore.getSquares());
           :key="square.id"
           class="square-room__params-item"
         >
-          <CalculatorInput :label="square.name" :degree="'2'" v-model="square.value" />
+          <CalculatorInput :label="square.name" :exponent="'2'" v-model="square.value" />
         </li>
       </ul>
     </div>
@@ -63,7 +63,6 @@ onMounted(() => calculatorStore.getSquares());
       grid-template-columns: repeat(2, 1fr);
       column-gap: 90px;
       row-gap: 26px;
-      list-style: none;
     }
   }
 }

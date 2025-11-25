@@ -25,8 +25,8 @@ const isActive = ref<boolean>(true);
         </button>
       </div>
       <div class="calculator-panel__tab-content">
-        <SquareRoom v-show="isActive" />
-        <NeccesaryWork v-show="!isActive" />
+        <SquareRoom v-if="isActive" />
+        <NeccesaryWork v-if="!isActive" />
       </div>
     </div>
     <AdminButton />
@@ -57,24 +57,17 @@ const isActive = ref<boolean>(true);
 
   &__tab-button {
     position: relative;
+    font-weight: 700;
     color: var(--color-light);
     border: none;
     background-color: rgba(6, 6, 6, 0.35);
     padding: 12px 21px 16px 21px;
     cursor: pointer;
+    border-bottom: 2px solid transparent;
   }
 }
 
 .active {
-  &::before {
-    content: '';
-    background-color: var(--color-accent);
-    height: 2px;
-    width: 175px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-  }
+  border-bottom: 2px solid var(--color-accent);
 }
 </style>

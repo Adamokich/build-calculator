@@ -5,20 +5,11 @@
 <style scoped lang="scss">
 .title {
   font-size: 48px;
+  text-transform: uppercase;
 
   span {
     position: relative;
-
-    &::before {
-      content: '';
-      background-color: var(--color-accent);
-      height: 4px;
-      width: 300px;
-      position: absolute;
-      left: 50%;
-      translate: -50%;
-      bottom: -14px;
-    }
+    border-bottom: 4px solid var(--color-accent);
   }
 }
 </style>

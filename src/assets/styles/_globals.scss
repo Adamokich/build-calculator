@@ -1,5 +1,5 @@
 body {
-  background: url('../../img/main-bg-img.jpg');
+  background: url('../img/main-bg-img.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,7 +11,7 @@ body {
   color: var(--color-light);
   font-family: var(--font-family);
   font-size: 18px;
-  font-weight: normal;
+  font-weight: 400;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,12 +21,4 @@ body {
 .container {
   width: 100%;
   max-width: 1720px;
-}
-
-h1,
-h2,
-h3,
-ul,
-p {
-  margin: 0;
 }

@@ -1,17 +1,19 @@
-import { API_ROUTES, client } from '@/api/api';
-import type { NoteData, NoteItem } from '@/interfaces/notes.interface';
+import { API_ROUTES, baseURL, client, currencyBaseURL } from '@/api/api';
+import type { OperationItem } from '@/interfaces/operations.interface';
 import type { SquareItem } from '@/interfaces/square.interface';
 import { defineStore } from 'pinia';
 import { computed, ref, watch } from 'vue';
 
 export const useCalculatorStore = defineStore('calculator', () => {
   const squares = ref<SquareItem[]>([]);
-  const notes = ref<NoteItem[]>([]);
+  const operations = ref<OperationItem[]>([]);
+  const dollarCurrency = ref<number>(0);
+  const totalPrice = ref<number>(4000);
   const ceilingHeight = ref<number | undefined>();
   const calculatedSquaresValues = ref<SquareItem[]>([]);
 
   async function getSquares(): Promise<void> {
-    const { data } = await client().get<SquareItem[]>(API_ROUTES.squares);
+    const { data } = await client().get<SquareItem[]>(baseURL + API_ROUTES.squares);
 
     squares.value = data.map((item) => {
       if (item.value === 0) {
@@ -22,17 +24,18 @@ export const useCalculatorStore = defineStore('calculator', () => {
     });
   }
 
-  async function getNotes(note: string): Promise<NoteItem[] | undefined> {
-    const { data } = await client().get<NoteData>(API_ROUTES.notes);
+  async function getOperations(): Promise<void> {
+    const { data } = await client().get<OperationItem[]>(baseURL + API_ROUTES.operations);
 
-    switch (note) {
-      case 'notesSquareRooms':
-        return (notes.value = data.notesSquareRooms);
-      case 'notesNecessaryWork':
-        return (notes.value = data.notesNecessaryWork);
-      case 'notesAdminPanel':
-        return (notes.value = data.notesAdminPanel);
-    }
+    operations.value = data;
+  }
+
+  async function getCurrentCurrency(): Promise<void> {
+    const { data } = await client().get(currencyBaseURL + API_ROUTES.currencyDollar);
+
+    dollarCurrency.value = Math.ceil(totalPrice.value / data.rates.UAH);
+
+    console.log(dollarCurrency.value);
   }
 
   const calculatedCeilingHeight = computed(() => {
@@ -65,5 +68,15 @@ export const useCalculatorStore = defineStore('calculator', () => {
     { deep: true },
   );
 
-  return { squares, notes, ceilingHeight, calculatedCeilingHeight, getSquares, getNotes };
+  return {
+    squares,
+    operations,
+    dollarCurrency,
+    totalPrice,
+    ceilingHeight,
+    calculatedCeilingHeight,
+    getSquares,
+    getOperations,
+    getCurrentCurrency,
+  };
 });

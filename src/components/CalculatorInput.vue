@@ -3,7 +3,7 @@ import type { InputOptions } from '@/interfaces/input.interface';
 import { computed } from 'vue';
 
 const data = defineModel<number>();
-const { label, placeholder = '0.0', gap = 8, degree = '' } = defineProps<InputOptions>();
+const { label, placeholder = '0.0', gap = 8, exponent = '' } = defineProps<InputOptions>();
 
 const isNegative = computed(() => {
   return typeof data.value === 'number' && data.value < 0 ? 'isNegative' : '';
@@ -15,7 +15,7 @@ const isNegative = computed(() => {
     <label class="calculator-field__label" :for="label">{{ label }}</label>
     <div class="calculator-field__input" :class="isNegative" :style="{ gap: `${gap}px` }">
       <input v-model="data" type="number" :id="label" :placeholder="placeholder" />
-      <span :data-degree="degree">м</span>
+      <span :data-exponent="exponent">м</span>
     </div>
   </div>
 </template>
@@ -71,7 +71,8 @@ const isNegative = computed(() => {
       position: relative;
 
       &::after {
-        content: attr(data-degree);
+        content: attr(data-exponent);
+        font-weight: 700;
         display: block;
         font-size: 10px;
         position: absolute;

@@ -1,13 +1,20 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useCalculatorStore } from '@/stores/calculator.store';
+// import { onMounted } from 'vue';
+
+const calculatorStore = useCalculatorStore();
+
+// onMounted(() => calculatorStore.getCurrentCurrency());
+</script>
 
 <template>
   <div class="total-price">
     <div class="total-price__grn">
-      <span>0 грн</span>
+      <span>{{ calculatorStore.totalPrice }} грн</span>
       <p>Примерная общая стоимость работ</p>
     </div>
     <div class="total-price__dollars">
-      <span>0 $</span>
+      <span>{{ calculatorStore.dollarCurrency }} $</span>
       <p>Сумма в долларах США по текущему курсу</p>
     </div>
   </div>
@@ -19,7 +26,7 @@
   flex-direction: column;
   text-align: center;
   gap: 50px;
-  margin-top: 45px;
+  margin-top: 50px;
   padding: 100px 80px 116px 80px;
   font-weight: 700;
   box-shadow: 0px 0px 30px 5px rgba(0, 0, 0, 0.5);

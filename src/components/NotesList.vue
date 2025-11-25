@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import type { noteOptions } from '@/interfaces/notes.interface';
-import { useCalculatorStore } from '@/stores/calculator.store';
+import { useNotesStore } from '@/stores/notes.store';
 import { onMounted } from 'vue';
 
-const calculatorStore = useCalculatorStore();
-const { note } = defineProps<{ note: noteOptions }>();
+const notesStore = useNotesStore();
+const { note, accentWord = '' } = defineProps<{ note: noteOptions; accentWord?: string }>();
 
-onMounted(() => calculatorStore.getNotes(note));
+onMounted(() => notesStore.getNotes(note));
 </script>
 
 <template>
   <div class="notes">
     <ul class="notes__list">
       Примечания:
-      <li v-for="item in calculatorStore.notes" :key="item.id" class="notes__list-item">
-        {{ item.note }}
-      </li>
+      <li
+        v-for="item in notesStore.notes"
+        :key="item.id"
+        class="notes__list-item"
+        v-html="notesStore.getAccentWord(item.note, accentWord)"
+      ></li>
     </ul>
   </div>
 </template>
