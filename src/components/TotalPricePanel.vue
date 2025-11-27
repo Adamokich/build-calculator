@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { useCalculatorStore } from '@/stores/calculator.store';
-// import { onMounted } from 'vue';
 
 const calculatorStore = useCalculatorStore();
-
-// onMounted(() => calculatorStore.getCurrentCurrency());
 </script>
 
 <template>
