@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { useCalculatorStore } from '@/stores/calculator.store';
 import CalculatorCheckbox from './CalculatorCheckbox.vue';
-import { onMounted } from 'vue';
+import { onActivated, onMounted } from 'vue';
 import NotesList from './NotesList.vue';
+import { useNotesStore } from '@/stores/notes.store';
 
 const calculatorStore = useCalculatorStore();
+const notesStore = useNotesStore();
 
 onMounted(() => calculatorStore.getOperations());
+onActivated(() => {
+  notesStore.note = 'notesNecessaryWork';
+});
 </script>
 
 <template>
@@ -27,7 +32,7 @@ onMounted(() => calculatorStore.getOperations());
         <CalculatorCheckbox />
       </li>
     </ul>
-    <NotesList class="neccesary-work__notes" note="notesNecessaryWork" accent-word="средняя" />
+    <NotesList class="neccesary-work__notes" :note="notesStore.note" accent-word="средняя" />
   </div>
 </template>
 

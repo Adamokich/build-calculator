@@ -1,10 +1,11 @@
 import { API_ROUTES, baseURL, client } from '@/api/api';
-import type { NoteData, NoteItem } from '@/interfaces/notes.interface';
+import type { NoteData, NoteItem, noteOptions } from '@/interfaces/notes.interface';
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 export const useNotesStore = defineStore('notes', () => {
   const notes = ref<NoteItem[]>([]);
+  const note = ref<noteOptions>('notesSquareRooms');
   const accentColor = '#ff5f13';
 
   async function getNotes(note: string): Promise<NoteItem[] | undefined> {
@@ -28,5 +29,5 @@ export const useNotesStore = defineStore('notes', () => {
     return noteText.replace(regex, `<span style="color: ${accentColor}">${word}</span>`);
   }
 
-  return { notes, getNotes, getAccentWord };
+  return { notes, note, getNotes, getAccentWord };
 });

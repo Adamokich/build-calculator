@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import { useCalculatorStore } from '@/stores/calculator.store';
 import CalculatorInput from './CalculatorInput.vue';
-import { onMounted } from 'vue';
+import { onActivated, onMounted } from 'vue';
 import NotesList from './NotesList.vue';
+import { useNotesStore } from '@/stores/notes.store';
 
 const calculatorStore = useCalculatorStore();
+const notesStore = useNotesStore();
 
 onMounted(() => calculatorStore.getSquares());
+onActivated(() => {
+  notesStore.note = 'notesSquareRooms';
+});
 </script>
 
 <template>
@@ -31,7 +36,7 @@ onMounted(() => calculatorStore.getSquares());
         </li>
       </ul>
     </div>
-    <NotesList note="notesSquareRooms" />
+    <NotesList :note="notesStore.note" />
   </div>
 </template>
 

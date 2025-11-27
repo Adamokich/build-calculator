@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import type { noteOptions } from '@/interfaces/notes.interface';
 import { useNotesStore } from '@/stores/notes.store';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 
 const notesStore = useNotesStore();
 const { note, accentWord = '' } = defineProps<{ note: noteOptions; accentWord?: string }>();
 
+watch(
+  () => note,
+  (newValue) => notesStore.getNotes(newValue),
+);
 onMounted(() => notesStore.getNotes(note));
 </script>
 

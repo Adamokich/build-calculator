@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import SquareRoom from './SquareRoom.vue';
 import AdminButton from './AdminButton.vue';
 import NeccesaryWork from './NeccesaryWork.vue';
 
 const isActive = ref<boolean>(true);
+const currentTabContent = computed(() => {
+  return isActive.value ? SquareRoom : NeccesaryWork;
+});
 </script>
 
 <template>
@@ -25,8 +28,9 @@ const isActive = ref<boolean>(true);
         </button>
       </div>
       <div class="calculator-panel__tab-content">
-        <SquareRoom v-if="isActive" />
-        <NeccesaryWork v-if="!isActive" />
+        <KeepAlive>
+          <component :is="currentTabContent"></component>
+        </KeepAlive>
       </div>
     </div>
     <AdminButton />
