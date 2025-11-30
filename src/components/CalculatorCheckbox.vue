@@ -1,5 +1,9 @@
+<script setup lang="ts">
+const data = defineModel();
+</script>
+
 <template>
-  <input class="calculator-checkbox" type="checkbox" />
+  <input class="calculator-checkbox" type="checkbox" v-model="data" />
 </template>
 
 <style scoped lang="scss">

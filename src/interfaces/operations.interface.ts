@@ -3,4 +3,5 @@ export interface OperationItem {
   count: string;
   unit: string;
   id: string;
+  isActive?: boolean;
 }
