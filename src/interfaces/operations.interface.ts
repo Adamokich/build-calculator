@@ -5,3 +5,11 @@ export interface OperationItem {
   id: string;
   isActive?: boolean;
 }
+
+export interface CalculationParams {
+  area: number;
+  height: number;
+  areaRooted: number;
+  count: number;
+  totalSumBathroomSquare: number;
+}

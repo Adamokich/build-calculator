@@ -49,7 +49,6 @@ onActivated(() => {
 
   &__height-calculator {
     display: flex;
-    gap: 68px;
   }
 
   &__params {

@@ -1,5 +1,5 @@
 import { API_ROUTES, baseURL, client, currencyBaseURL } from '@/api/api';
-import type { OperationItem } from '@/interfaces/operations.interface';
+import type { CalculationParams, OperationItem } from '@/interfaces/operations.interface';
 import type { SquareItem } from '@/interfaces/square.interface';
 import { defineStore } from 'pinia';
 import { computed, ref, watch } from 'vue';
@@ -31,6 +31,19 @@ export const useCalculatorStore = defineStore('calculator', () => {
     console.log(dollarCurrency.value);
   }
 
+  function calcByOpName(name: string, area: number, count: number): number {
+    let window = 0;
+    let doors = 0;
+
+    if (name === 'Откосы оконные') {
+      window = area / 7.5 < 0.5 ? 0 : Math.ceil(area / 7.5) * count;
+    } else if (name === 'Вставка межкомнатных дверей') {
+      doors = area / 25 < 0.5 ? 0 : Math.ceil(area / 25) * count;
+    }
+
+    return window + doors;
+  }
+
   const calculatedCeilingHeight = computed(() => {
     if (ceilingHeight.value === undefined) {
       return 0;
@@ -59,25 +72,28 @@ export const useCalculatorStore = defineStore('calculator', () => {
     return totalSquare.reduce((acc, sum) => (sum.value ? acc + sum.value : acc), 0);
   });
 
-  function calcByOpName(name: string, area: number, count: number): number {
-    let window = 0;
-    let doors = 0;
-
-    if (name === 'Откосы оконные') {
-      window = area / 7.5 < 0.5 ? 0 : Math.ceil(area / 7.5) * count;
-    } else if (name === 'Вставка межкомнатных дверей') {
-      doors = area / 25 < 0.5 ? 0 : Math.ceil(area / 25) * count;
-    }
-
-    return window + doors;
-  }
+  const operationsStrategies = {
+    operation_1: (params: CalculationParams) => params.area * params.count,
+    operation_2: (params: CalculationParams) =>
+      4 * params.areaRooted * params.height * params.count,
+    operation_3: (params: CalculationParams) => 4 * params.areaRooted * params.count,
+    operation_4: (params: CalculationParams, operations: OperationItem) =>
+      calcByOpName(operations.name, params.area, params.count),
+    operation_5: (params: CalculationParams) => params.totalSumBathroomSquare * params.count,
+    operation_6: (params: CalculationParams) => params.count,
+  };
 
   function calcOperations(operations: OperationItem[]): void {
     let total = 0;
-
-    const height = calculatedCeilingHeight.value;
     const area = totalSumSquare.value;
-    const areaRooted = Math.round(Math.sqrt(area));
+
+    const calculationParams: CalculationParams = {
+      height: calculatedCeilingHeight.value,
+      area: area,
+      areaRooted: Math.round(Math.sqrt(area)),
+      totalSumBathroomSquare: totalSumBathroomSquare.value,
+      count: 0,
+    };
 
     if (area <= 0 || operations.length === 0) {
       totalPrice.value = 0;
@@ -85,24 +101,19 @@ export const useCalculatorStore = defineStore('calculator', () => {
     }
 
     operations.forEach((operation) => {
-      const count = +operation.count || 0;
+      calculationParams.count = +operation.count || 0;
 
-      if (operation.id.includes('operation_1')) {
-        total += area * count;
-      } else if (operation.id.includes('operation_2')) {
-        total += 4 * areaRooted * height * count;
-      } else if (operation.id.includes('operation_3')) {
-        total += 4 * areaRooted * count;
-      } else if (operation.id.includes('operation_4')) {
-        total += calcByOpName(operation.name, area, count);
-      } else if (operation.id.includes('operation_5')) {
-        total += totalSumBathroomSquare.value * count;
-      } else if (operation.id.includes('operation_6')) {
-        total += count;
+      const operationKey = Object.keys(operationsStrategies).find((key) =>
+        operation.id.includes(key),
+      );
+
+      if (operationKey) {
+        const calculate = operationsStrategies[operationKey as keyof typeof operationsStrategies];
+        total += calculate(calculationParams, operation);
       }
     });
 
-    totalPrice.value = total;
+    totalPrice.value = Math.round(total);
   }
 
   watch(
