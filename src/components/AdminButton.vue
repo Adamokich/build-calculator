@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <RouterLink to="#" class="admin-button">Войти как администратор</RouterLink>
+  <RouterLink to="/auth" class="admin-button">Войти как администратор</RouterLink>
 </template>
 
 <style scoped lang="scss">

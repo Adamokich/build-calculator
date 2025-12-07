@@ -214,5 +214,9 @@
         "note_id": 1
       }
     ]
+  },
+  "admin": {
+    "login": "root",
+    "password": "password"
   }
 }

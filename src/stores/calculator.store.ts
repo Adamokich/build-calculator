@@ -108,8 +108,10 @@ export const useCalculatorStore = defineStore('calculator', () => {
       );
 
       if (operationKey) {
-        const calculate = operationsStrategies[operationKey as keyof typeof operationsStrategies];
-        total += calculate(calculationParams, operation);
+        total += operationsStrategies[operationKey as keyof typeof operationsStrategies](
+          calculationParams,
+          operation,
+        );
       }
     });
 
