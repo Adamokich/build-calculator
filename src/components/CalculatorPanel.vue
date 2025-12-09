@@ -34,7 +34,7 @@ const currentTabContent = computed(() => {
         </KeepAlive>
       </div>
     </div>
-    <AdminButton />
+    <AdminButton class="calculator-panel__button">Войти как администратор</AdminButton>
   </div>
 </template>
 
@@ -69,6 +69,10 @@ const currentTabContent = computed(() => {
     padding: 12px 21px 16px 21px;
     cursor: pointer;
     border-bottom: 2px solid transparent;
+  }
+
+  &__button {
+    margin-bottom: 20px;
   }
 }
 

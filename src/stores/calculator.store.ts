@@ -27,8 +27,6 @@ export const useCalculatorStore = defineStore('calculator', () => {
     const { data } = await client().get(currencyBaseURL + API_ROUTES.currencyDollar);
 
     dollarCurrency.value = Math.ceil(totalPrice.value / data.rates.UAH);
-
-    console.log(dollarCurrency.value);
   }
 
   function calcByOpName(name: string, area: number, count: number): number {

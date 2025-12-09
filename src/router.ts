@@ -29,7 +29,7 @@ router.beforeEach((to) => {
   const isPrivatePages = !publicPages.includes(to.name as string);
 
   if (!authStore.isAdmin && isPrivatePages) {
-    return { name: 'auth' };
+    return { name: 'main' };
   }
 
   if (authStore.isAdmin && to.name === 'auth') {

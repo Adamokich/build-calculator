@@ -79,111 +79,111 @@
   "operations": [
     {
       "name": "Демонтаж, зачистка старой отделки",
-      "count": "20",
-      "unit": "грн/м2",
+      "count": 20,
+      "unit": "грн/м",
       "id": "operation_1_destruction"
     },
     {
       "name": "Откосы оконные",
-      "count": "20",
-      "unit": "грн/м2",
+      "count": 20,
+      "unit": "грн/м",
       "id": "operation_4_slopes"
     },
     {
       "name": "Штукатурка стен",
-      "count": "20",
-      "unit": "грн/м2",
+      "count": 20,
+      "unit": "грн/м",
       "id": "operation_2_plastering"
     },
     {
       "name": "Стяжка пола",
-      "count": "20",
-      "unit": "грн/м2",
+      "count": 20,
+      "unit": "грн/м",
       "id": "operation_1_screed"
     },
     {
       "name": "Шпаклевка стен",
-      "count": "20",
-      "unit": "грн/м2",
-      "id": "operation_2_puttying/walls"
+      "count": 20,
+      "unit": "грн/м",
+      "id": "operation_2_puttying_walls"
     },
     {
       "name": "Укладка ламината",
-      "count": "20",
-      "unit": "грн/м2",
+      "count": 20,
+      "unit": "грн/м",
       "id": "operation_1_laying"
     },
     {
       "name": "Поклейка обоев",
-      "count": "20",
-      "unit": "грн/м2",
+      "count": 20,
+      "unit": "грн/м",
       "id": "operation_2_wallpapering"
     },
     {
       "name": "Установка плинтуса на пол",
-      "count": "20",
-      "unit": "грн/м2",
+      "count": 200,
+      "unit": "грн/м",
       "id": "operation_3_installing baseboards"
     },
     {
       "name": "Покраска стен",
-      "count": "20",
-      "unit": "грн/м2",
-      "id": "operation_2_painting/walls"
+      "count": 20,
+      "unit": "грн/м",
+      "id": "operation_2_painting_walls"
     },
     {
       "name": "Плитка санузлы, пол кухни, коридор",
-      "count": "20",
-      "unit": "грн/м2",
+      "count": 20,
+      "unit": "грн/м",
       "id": "operation_5_tile"
     },
     {
       "name": "Натяжной / гипсокартонный потолок",
-      "count": "20",
-      "unit": "грн/м2",
-      "id": "operation_1_stretch/plasterboard ceiling"
+      "count": 20,
+      "unit": "грн/м",
+      "id": "operation_1_stretch_plasterboard ceiling"
     },
     {
       "name": "Разводка, установка сантехники",
-      "count": "30000",
-      "unit": "грн/м2",
+      "count": 30000,
+      "unit": "грн/м",
       "id": "operation_6_plumbing"
     },
     {
       "name": "Покраска потолка",
-      "count": "20",
-      "unit": "грн/м2",
-      "id": "operation_1_painting/ceiling"
+      "count": 20,
+      "unit": "грн/м",
+      "id": "operation_1_painting_ceiling"
     },
     {
       "name": "Электрика: розетки, выключ., свет",
-      "count": "40000",
-      "unit": "грн/м2",
+      "count": 40000,
+      "unit": "грн/м",
       "id": "operation_6_electrical"
     },
     {
       "name": "Шпаклевка потолка",
-      "count": "20",
-      "unit": "грн/м2",
-      "id": "operation_1_puttying/ceiling"
+      "count": 20,
+      "unit": "грн/м",
+      "id": "operation_1_puttying_ceiling"
     },
     {
       "name": "Вставка межкомнатных дверей",
-      "count": "10000",
-      "unit": "грн/м2",
-      "id": "operation_4_insert/interior doors"
+      "count": 10000,
+      "unit": "грн/м",
+      "id": "operation_4_insert_interior doors"
     },
     {
       "name": "Плинтус потолочный",
-      "count": "10",
-      "unit": "грн/м2",
+      "count": 20,
+      "unit": "грн/м",
       "id": "operation_3_ceiling plinth"
     },
     {
       "name": "Вставка входной двери ",
-      "count": "10000",
-      "unit": "грн/м2",
-      "id": "operation_6_insert/front door"
+      "count": 10000,
+      "unit": "грн/м",
+      "id": "operation_6_insert_front door"
     }
   ],
   "notes": {
@@ -192,7 +192,6 @@
         "note": "устанавливайте площадь помещений там, где необходим ремонт",
         "note_id": 1
       },
-
       {
         "note": "если есть дополнительные комнаты, например, Спальня №3, то добавляйте их площадь к существующим в калькуляторе",
         "note_id": 2

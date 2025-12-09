@@ -32,7 +32,7 @@ onActivated(() => {
           :key="square.id"
           class="square-room__params-item"
         >
-          <CalculatorInput :label="square.name" :exponent="'2'" v-model="square.value" />
+          <CalculatorInput :label="square.name" :exponent="'2'" v-model="square.value" unit="м" />
         </li>
       </ul>
     </div>

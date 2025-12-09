@@ -2,20 +2,37 @@
 import type { InputOptions } from '@/interfaces/input.interface';
 import { computed } from 'vue';
 
-const data = defineModel<number>();
-const { label, placeholder = '0.0', gap = 8, exponent = '' } = defineProps<InputOptions>();
+const data = defineModel<number | null | undefined>();
+const {
+  label,
+  unit = 'м',
+  placeholder = '0.0',
+  gap = 8,
+  exponent = '',
+  fontSize = 18,
+  isAdminPanel = false,
+} = defineProps<InputOptions>();
 
 const isNegative = computed(() => {
   return typeof data.value === 'number' && data.value < 0 ? 'isNegative' : '';
 });
+
+const isAdminPanelInput = computed(() =>
+  isAdminPanel ? 'calculator-field__input-admin' : 'calculator-field__input',
+);
 </script>
 
 <template>
   <div class="calculator-field">
     <label class="calculator-field__label" :for="label">{{ label }}</label>
-    <div class="calculator-field__input" :class="isNegative" :style="{ gap: `${gap}px` }">
-      <input v-model="data" type="number" :id="label" :placeholder="placeholder" />
-      <span :data-exponent="exponent">м</span>
+    <div :class="`${isNegative} ${isAdminPanelInput}`" :style="{ gap: `${gap}px` }">
+      <input v-model="data" type="number" :id="label" :placeholder="String(placeholder)" />
+      <span
+        :style="{ fontSize: `${fontSize}px` }"
+        class="calculator-field__exponent"
+        :data-exponent="exponent"
+        >{{ unit }}</span
+      >
     </div>
   </div>
 </template>
@@ -31,7 +48,8 @@ const isNegative = computed(() => {
     cursor: pointer;
   }
 
-  &__input {
+  &__input,
+  &__input-admin {
     position: relative;
     display: flex;
     align-items: center;
@@ -63,7 +81,7 @@ const isNegative = computed(() => {
       color: var(--color-input);
       border-bottom: 1px solid var(--color-light);
       width: 100%;
-      max-width: 50px;
+      max-width: 66px;
       text-align: center;
     }
 
@@ -80,6 +98,19 @@ const isNegative = computed(() => {
         top: 0;
       }
     }
+  }
+
+  &__input-admin {
+    input {
+      font-size: 14px;
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+  }
+
+  &__exponent {
+    font-weight: 700;
   }
 }
 

@@ -1,10 +1,12 @@
 <script setup lang="ts"></script>
 
 <template>
-  <RouterLink to="/auth" class="admin-button">Войти как администратор</RouterLink>
+  <RouterLink to="/auth" class="admin-button"><slot /></RouterLink>
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .admin-button {
   text-decoration: none;
   padding: 12px 21px;
@@ -12,6 +14,10 @@
   border-radius: 4px;
   cursor: pointer;
   color: var(--color-light);
-  transition: opacity 0.1s ease;
+  transition: opacity 0.2s ease;
+
+  @include hover {
+    opacity: 0.5;
+  }
 }
 </style>

@@ -1,9 +1,10 @@
 export interface OperationItem {
   name: string;
-  count: string;
+  count: number;
   unit: string;
   id: string;
   isActive?: boolean;
+  value?: undefined | number;
 }
 
 export interface CalculationParams {

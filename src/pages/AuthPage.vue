@@ -10,14 +10,14 @@ const router = useRouter();
 const { handleSubmit, setErrors, errors } = useForm();
 const passwordErrorClass = computed(() => !!errors.value['password']);
 const loginErrorClass = computed(() => !!errors.value['login']);
-const anyErrorClass = computed(() => !!errors.value['']);
+const anyErrorClass = computed(() => !!errors.value['anyError']);
 
 const onSubmit = handleSubmit(async (formValues: unknown) => {
-  const succes = await authStore.formSubmit(formValues);
+  const success = await authStore.formSubmit(formValues);
 
-  if (!succes) {
+  if (!success) {
     setErrors({
-      '': 'Неверный логин или пароль',
+      anyError: 'Неверный логин или пароль',
     });
   } else {
     router.push({ name: 'admin' });
@@ -58,7 +58,7 @@ const onSubmit = handleSubmit(async (formValues: unknown) => {
             <ErrorMessage name="password" class="error-message" />
           </div>
         </div>
-        <ErrorMessage class="error-message" name="" />
+        <ErrorMessage class="error-message" name="anyError" />
         <button class="auth__form-button">Войти</button>
       </form>
     </div>
