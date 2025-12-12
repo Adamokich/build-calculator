@@ -27,7 +27,7 @@ const onSubmit = handleSubmit(async (formValues: unknown) => {
 
 <template>
   <div class="auth">
-    <MainTitle />
+    <MainTitle class="auth__main-title" />
 
     <div class="auth__wrapper container">
       <h2 class="auth__title">Авторизация администратора</h2>
@@ -66,10 +66,22 @@ const onSubmit = handleSubmit(async (formValues: unknown) => {
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .auth {
   display: flex;
   flex-direction: column;
   gap: 240px;
+
+  &__main-title {
+    @include tablet {
+      font-size: 29px;
+    }
+
+    @include mobile-s {
+      font-size: 25px;
+    }
+  }
 
   &__wrapper {
     display: flex;
@@ -81,6 +93,18 @@ const onSubmit = handleSubmit(async (formValues: unknown) => {
 
   &__title {
     font-size: 40px;
+
+    @include tablet {
+      font-size: 35px;
+    }
+
+    @include mobile {
+      font-size: 25px;
+    }
+
+    @include mobile-s {
+      font-size: 22px;
+    }
   }
 
   &__form {
@@ -96,6 +120,14 @@ const onSubmit = handleSubmit(async (formValues: unknown) => {
       rgba(29, 29, 53, 0.9) 100%
     );
 
+    @include mobile {
+      padding-inline: 40px;
+    }
+
+    @include mobile-s {
+      width: 100%;
+    }
+
     &-fields {
       display: flex;
       flex-direction: column;
@@ -106,12 +138,20 @@ const onSubmit = handleSubmit(async (formValues: unknown) => {
       font-size: 24px;
       padding: 8px 20px;
       border-radius: 4px;
+
+      @include mobile-s {
+        width: 100%;
+      }
     }
 
     &-button {
       padding: 8px 58px;
       font-size: 24px;
       border-radius: 4px;
+
+      @include mobile-s {
+        width: 100%;
+      }
     }
   }
 

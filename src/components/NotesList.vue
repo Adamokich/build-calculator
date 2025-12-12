@@ -28,6 +28,8 @@ onMounted(() => notesStore.getNotes(note));
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .notes {
   margin-top: 11px;
 
@@ -36,6 +38,14 @@ onMounted(() => notesStore.getNotes(note));
     list-style: none;
     display: flex;
     flex-direction: column;
+
+    @include mobile {
+      gap: 10px;
+    }
+
+    @include mobile-s {
+      font-size: 16px;
+    }
 
     &-item {
       position: relative;

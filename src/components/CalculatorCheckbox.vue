@@ -7,6 +7,8 @@ const data = defineModel();
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .calculator-checkbox {
   appearance: none;
   -webkit-appearance: none;
@@ -18,6 +20,11 @@ const data = defineModel();
   border: 1px solid var(--color-light);
   width: 15px;
   height: 15px;
+
+  @include mobile-s {
+    width: 100%;
+    max-width: 15px;
+  }
 
   &:checked::before {
     content: '';

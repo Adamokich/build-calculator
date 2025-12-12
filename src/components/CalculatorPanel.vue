@@ -39,6 +39,8 @@ const currentTabContent = computed(() => {
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .calculator-panel {
   display: flex;
   flex-direction: column;
@@ -69,10 +71,18 @@ const currentTabContent = computed(() => {
     padding: 12px 21px 16px 21px;
     cursor: pointer;
     border-bottom: 2px solid transparent;
+
+    @include mobile {
+      font-size: 14px;
+    }
   }
 
   &__button {
     margin-bottom: 20px;
+
+    @include tablet-l {
+      display: none;
+    }
   }
 }
 

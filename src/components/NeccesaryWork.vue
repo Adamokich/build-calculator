@@ -31,7 +31,7 @@ onActivated(() => {
             </span>
           </p>
         </div>
-        <CalculatorCheckbox v-model="operation.isActive" />
+        <CalculatorCheckbox class="neccesary-work__checkbox" v-model="operation.isActive" />
       </li>
     </ul>
     <NotesList class="neccesary-work__notes" :note="notesStore.note" accent-word="средняя" />
@@ -39,6 +39,8 @@ onActivated(() => {
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .neccesary-work {
   display: flex;
   flex-direction: column;
@@ -47,6 +49,11 @@ onActivated(() => {
 
   &__title {
     font-size: 24px;
+    border-bottom: 1px solid var(--color-light);
+
+    @include mobile-s {
+      font-size: 20px;
+    }
   }
 
   &__list {
@@ -54,6 +61,10 @@ onActivated(() => {
     grid-template-columns: repeat(2, 436px);
     column-gap: 30px;
     row-gap: 16px;
+
+    @include desktop {
+      grid-template-columns: repeat(1, 1fr);
+    }
 
     &-item {
       display: flex;
@@ -66,6 +77,11 @@ onActivated(() => {
         display: flex;
         align-items: center;
         gap: 10px;
+
+        @include mobile {
+          flex-direction: column;
+          align-items: start;
+        }
       }
 
       span {
@@ -85,6 +101,10 @@ onActivated(() => {
             top: 0;
           }
         }
+      }
+
+      @include mobile {
+        align-items: start;
       }
     }
   }
