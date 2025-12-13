@@ -27,8 +27,6 @@ export const useCalculatorStore = defineStore('calculator', () => {
     const { data } = await client().get(currencyBaseURL + API_ROUTES.currencyDollar);
 
     dollarCurrency.value = Math.ceil(totalPrice.value / data.rates.UAH);
-
-    console.log(dollarCurrency.value);
   }
 
   function calcByOpName(name: string, area: number, count: number): number {
@@ -108,8 +106,10 @@ export const useCalculatorStore = defineStore('calculator', () => {
       );
 
       if (operationKey) {
-        const calculate = operationsStrategies[operationKey as keyof typeof operationsStrategies];
-        total += calculate(calculationParams, operation);
+        total += operationsStrategies[operationKey as keyof typeof operationsStrategies](
+          calculationParams,
+          operation,
+        );
       }
     });
 

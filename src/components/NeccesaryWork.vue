@@ -26,7 +26,9 @@ onActivated(() => {
         <div class="neccesary-work__details">
           <p>
             {{ operation.name }}
-            <span> {{ operation.count }}{{ operation.unit }} </span>
+            <span>
+              {{ operation.count }}<span data-exponent="2">{{ operation.unit }}</span>
+            </span>
           </p>
         </div>
         <CalculatorCheckbox v-model="operation.isActive" />
@@ -69,6 +71,20 @@ onActivated(() => {
       span {
         color: var(--color-accent);
         font-size: 14px;
+
+        &[data-exponent] {
+          position: relative;
+
+          &::after {
+            content: attr(data-exponent);
+            font-weight: 700;
+            display: block;
+            font-size: 10px;
+            position: absolute;
+            right: -7px;
+            top: 0;
+          }
+        }
       }
     }
   }

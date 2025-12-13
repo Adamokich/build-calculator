@@ -11,7 +11,30 @@ export const useOperationsStore = defineStore('operations', () => {
   async function getOperations(): Promise<void> {
     const { data } = await client().get<OperationItem[]>(baseURL + API_ROUTES.operations);
 
-    operations.value = data.map((operation) => ({ ...operation, isActive: false }));
+    operations.value = data.map((operation) => ({
+      ...operation,
+      isActive: false,
+      value: undefined,
+    }));
+  }
+
+  async function updateOperations(newCount: number | undefined, id: string): Promise<void> {
+    if (!newCount) {
+      return;
+    }
+
+    const count = newCount < 0 ? 0 : newCount;
+    try {
+      await client().patch(baseURL + `${API_ROUTES.operations}/${id}`, {
+        count,
+      });
+
+      getOperations();
+    } catch (error: unknown) {
+      if (typeof error === 'object' && error !== null && 'response' in error) {
+        throw new Error(`Произошла ошибка. Подробности: ${error.response}`);
+      }
+    }
   }
 
   const selectedOperations = computed(() =>
@@ -38,5 +61,5 @@ export const useOperationsStore = defineStore('operations', () => {
     () => calculatorStore.calcOperations(selectedOperations.value),
   );
 
-  return { operations, getOperations };
+  return { operations, getOperations, updateOperations };
 });
