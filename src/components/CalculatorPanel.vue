@@ -5,6 +5,7 @@ import AdminButton from './AdminButton.vue';
 import NeccesaryWork from './NeccesaryWork.vue';
 
 const isActive = ref<boolean>(true);
+
 const currentTabContent = computed(() => {
   return isActive.value ? SquareRoom : NeccesaryWork;
 });

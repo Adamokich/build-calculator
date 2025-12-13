@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { useCalculatorStore } from '@/stores/calculator.store';
 import CalculatorCheckbox from './CalculatorCheckbox.vue';
 import { onActivated, onMounted } from 'vue';
 import NotesList from './NotesList.vue';
 import { useNotesStore } from '@/stores/notes.store';
+import { useOperationsStore } from '@/stores/operations.store';
 
-const calculatorStore = useCalculatorStore();
+const operationsStore = useOperationsStore();
 const notesStore = useNotesStore();
 
-onMounted(() => calculatorStore.getOperations());
+onMounted(() => operationsStore.getOperations());
 onActivated(() => {
   notesStore.note = 'notesNecessaryWork';
 });
@@ -19,7 +19,7 @@ onActivated(() => {
     <h2 class="neccesary-work__title">Название необходимых работ:</h2>
     <ul class="neccesary-work__list">
       <li
-        v-for="operation in calculatorStore.operations"
+        v-for="operation in operationsStore.operations"
         :key="operation.id"
         class="neccesary-work__list-item"
       >
@@ -29,7 +29,7 @@ onActivated(() => {
             <span> {{ operation.count }}{{ operation.unit }} </span>
           </p>
         </div>
-        <CalculatorCheckbox />
+        <CalculatorCheckbox v-model="operation.isActive" />
       </li>
     </ul>
     <NotesList class="neccesary-work__notes" :note="notesStore.note" accent-word="средняя" />
