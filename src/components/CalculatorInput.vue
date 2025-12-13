@@ -38,6 +38,8 @@ const isAdminPanelInput = computed(() =>
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .calculator-field {
   display: flex;
   align-items: center;
@@ -46,6 +48,10 @@ const isAdminPanelInput = computed(() =>
 
   &__label {
     cursor: pointer;
+
+    @include mobile-s {
+      font-size: 16px;
+    }
   }
 
   &__input,
@@ -69,6 +75,10 @@ const isAdminPanelInput = computed(() =>
 
       &::placeholder {
         font-weight: 700;
+
+        @include mobile-s {
+          font-size: 16px;
+        }
       }
 
       &:focus {
@@ -101,6 +111,12 @@ const isAdminPanelInput = computed(() =>
   }
 
   &__input-admin {
+    @include mobile {
+      width: 100%;
+      max-width: 66px;
+      flex-direction: column;
+    }
+
     input {
       font-size: 14px;
       &::placeholder {

@@ -32,7 +32,13 @@ onActivated(() => {
           :key="square.id"
           class="square-room__params-item"
         >
-          <CalculatorInput :label="square.name" :exponent="'2'" v-model="square.value" unit="м" />
+          <CalculatorInput
+            class="square-room__params-field"
+            :label="square.name"
+            :exponent="'2'"
+            v-model="square.value"
+            unit="м"
+          />
         </li>
       </ul>
     </div>
@@ -41,6 +47,8 @@ onActivated(() => {
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .square-room {
   display: flex;
   flex-direction: column;
@@ -49,6 +57,11 @@ onActivated(() => {
 
   &__height-calculator {
     display: flex;
+
+    @include mobile {
+      align-items: end;
+      gap: 20px;
+    }
   }
 
   &__params {
@@ -56,10 +69,24 @@ onActivated(() => {
     flex-direction: column;
     gap: 40px;
 
+    @include mobile {
+      align-items: start;
+    }
+
     &-title {
       width: 100%;
       max-width: 392px;
       border-bottom: 1px solid var(--color-light);
+      font-size: 24px;
+
+      @include mobile {
+        font-size: 18px;
+        max-width: 262px;
+      }
+
+      @include mobile-s {
+        font-size: 16px;
+      }
     }
 
     &-list {
@@ -67,6 +94,16 @@ onActivated(() => {
       grid-template-columns: repeat(2, 1fr);
       column-gap: 90px;
       row-gap: 26px;
+
+      @include laptop {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+
+    &-field {
+      @include mobile {
+        gap: 20px;
+      }
     }
   }
 }

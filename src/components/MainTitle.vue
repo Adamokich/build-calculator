@@ -3,13 +3,18 @@
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .title {
   font-size: 48px;
   text-transform: uppercase;
 
   span {
     position: relative;
-    border-bottom: 4px solid var(--color-accent);
+
+    @include mobile-above {
+      border-bottom: 4px solid var(--color-accent);
+    }
   }
 }
 </style>

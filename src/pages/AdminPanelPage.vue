@@ -15,7 +15,7 @@ onMounted(() => operationsStore.getOperations());
 
 <template>
   <div class="admin-panel">
-    <MainTitle />
+    <MainTitle class="admin-panel__title" />
     <div class="admin-panel__wrapper container">
       <div class="admin-panel__options">
         <h2 class="admin-panel__options-title">Установите средний ценник каждой работы:</h2>
@@ -51,11 +51,23 @@ onMounted(() => operationsStore.getOperations());
 </template>
 
 <style scoped lang="scss">
+@use '../assets/styles/helpers/media' as *;
+
 .admin-panel {
   display: flex;
   flex-direction: column;
   gap: 102px;
   font-size: 16px;
+
+  &__title {
+    @include tablet {
+      font-size: 29px;
+    }
+
+    @include mobile-s {
+      font-size: 25px;
+    }
+  }
 
   &__wrapper {
     width: 100%;
@@ -88,6 +100,15 @@ onMounted(() => operationsStore.getOperations());
       grid-template-columns: repeat(2, 452px);
       column-gap: 170px;
       row-gap: 18px;
+
+      @include laptop {
+        grid-template-columns: 1fr;
+      }
+
+      @include mobile {
+        width: 100%;
+        row-gap: 30px;
+      }
     }
   }
 
@@ -95,6 +116,12 @@ onMounted(() => operationsStore.getOperations());
     display: flex;
     align-items: end;
     justify-content: space-between;
+
+    @include laptop {
+      flex-direction: column;
+      align-items: start;
+      gap: 20px;
+    }
 
     &-button {
       padding: 12px 65px;
